@@ -1,0 +1,54 @@
+<!--RandomFeatures-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Features</title>
+  <style>
+    input {
+      padding: 10px;
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px;
+    }
+
+    #qrcode {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>QR Code Generator</h1>
+  <input type="text" id="urlInput" placeholder="Enter URL">
+  <button onclick="generateQR()">Generate QR Code</button>
+  <div id="qrcode"></div>
+
+  <script src="https://cdn.jsdelivr.net/qrcode/1.4.4/qrcode.min.js"></script>
+  <script>
+    function generateQR() {
+      var url = document.getElementById('urlInput').value;
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: url,
+        width: 128,
+        height: 128
+      });
+      qrcode.makeCode(url);
+      
+      // Create an img element
+      var imgElement = document.createElement('img');
+
+      // Set its src attribute to the data URL of the QR code
+      imgElement.src = document.getElementById('qrcode').getElementsByTagName('img')[0].src;
+      document.getElementById('qrcode').appendChild(imgElement);
+    }
+  </script>
+
+</body>
+
+</html>
